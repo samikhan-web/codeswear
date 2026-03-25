@@ -16,7 +16,7 @@ export default function Home({ products }) {
 
         {/* Background Image */}
         <Image
-          src="/Home.png"
+          src="/home.png"
           alt="Wear the Code T-shirt"
           fill
           priority
