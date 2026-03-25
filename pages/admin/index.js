@@ -10,23 +10,21 @@ export default function AdminDashboard() {
   const salesData = [120, 200, 150, 300, 250, 400, 350];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-  useEffect(() => {
-    async function fetchStats() {
-      try {
-        const baseURL =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
-        const res = await fetch(`${baseURL}/admin/stats`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.message || "Failed to load stats");
-        setStats(data.stats);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+useEffect(() => {
+  async function fetchStats() {
+    try {
+      const res = await fetch("/api/admin/stats");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to load stats");
+      setStats(data.stats);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    fetchStats();
-  }, []);
+  }
+  fetchStats();
+}, []);
 
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
